@@ -1,7 +1,7 @@
 package com.sd.passwordmanager.application
 
 import android.app.Application
+import dagger.hilt.android.HiltAndroidApp
 
-
-class PasswordManagerApplication:Application() {
-}
+@HiltAndroidApp
+class PasswordManagerApplication:Application()

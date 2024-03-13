@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/edit"
+        android:title="Редактировать"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/remove"
+        android:title="Удалить"
+        app:showAsAction="never" />
+    <group android:id="@+id/hidden_password">
+        <item
+            android:id="@+id/show_password"
+            android:title="показать пароль"
+            app:showAsAction="never" />
+    </group>
+    <group android:id="@+id/open_password">
+        <item
+            android:id="@+id/hide_password"
+            android:title="скрыть пароль"
+            app:showAsAction="never" />
+    </group>
+</menu>
