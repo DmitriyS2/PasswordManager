@@ -12,7 +12,7 @@ interface MasterDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(masterEntity: MasterEntity)
 
-    //дать мастер-пароль
-    @Query("SELECT * FROM MasterEntity")
-    suspend fun getMasterPassword(): List<MasterEntity>
+    //дать мастер-пароль по паролю
+    @Query("SELECT * FROM MasterEntity WHERE password = :password")
+    suspend fun getMasterPassword(password:String): MasterEntity?
 }

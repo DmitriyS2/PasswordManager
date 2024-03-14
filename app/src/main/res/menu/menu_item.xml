@@ -13,13 +13,13 @@
     <group android:id="@+id/hidden_password">
         <item
             android:id="@+id/show_password"
-            android:title="показать пароль"
+            android:title="Показать пароль"
             app:showAsAction="never" />
     </group>
     <group android:id="@+id/open_password">
         <item
             android:id="@+id/hide_password"
-            android:title="скрыть пароль"
+            android:title="Скрыть пароль"
             app:showAsAction="never" />
     </group>
 </menu>

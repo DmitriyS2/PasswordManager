@@ -33,6 +33,7 @@ class ItemAdapter(private val listener: Listener) :
 
             title.text = item.title
             site.text = item.url
+            password.text = item.password
             password.isVisible = item.isOpenPassword
 
             Glide.with(avatar)
@@ -46,8 +47,8 @@ class ItemAdapter(private val listener: Listener) :
             buttonMenu.setOnClickListener {
                 PopupMenu(it.context, it).apply {
                     inflate(R.menu.menu_item)
-                    menu.setGroupVisible(R.id.hidden_password, item.isOpenPassword)
-                    menu.setGroupVisible(R.id.open_password, !item.isOpenPassword)
+                    menu.setGroupVisible(R.id.hidden_password, !item.isOpenPassword)
+                    menu.setGroupVisible(R.id.open_password, item.isOpenPassword)
                     setOnMenuItemClickListener { menu_item ->
                         when (menu_item.itemId) {
                             R.id.remove -> {

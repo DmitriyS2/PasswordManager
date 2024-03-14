@@ -59,6 +59,24 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout_description"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textInputLayout_site">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/description_current"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="Введите описание"
+                    android:inputType="textEmailAddress" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textInputLayout_password"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -67,7 +85,7 @@
                 app:layout_constraintBottom_toTopOf="@id/textInputLayout_password_confirm"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/textInputLayout_site">
+                app:layout_constraintTop_toBottomOf="@id/textInputLayout_description">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/password_current"
@@ -123,7 +141,6 @@
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/button_ok_current"
-
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
