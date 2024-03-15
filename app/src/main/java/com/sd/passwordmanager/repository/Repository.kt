@@ -7,7 +7,7 @@ interface Repository {
     suspend fun checkSignIn(password: String): MasterPassword?
     suspend fun signUp(password: String): MasterPassword?
 
-    suspend fun getAllItemPasswords(master:String):List<ItemPassword>
+    suspend fun getAllItemPasswords(idMaster: Int): List<ItemPassword>
     suspend fun addItem(itemPassword: ItemPassword): List<ItemPassword>
     suspend fun deleteItem(itemPassword: ItemPassword): List<ItemPassword>
 

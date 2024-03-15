@@ -13,16 +13,16 @@ import javax.inject.Inject
 @HiltViewModel
 class MainViewModel @Inject constructor(
     private val repository: Repository
-):ViewModel() {
+) : ViewModel() {
 
-    private val _dataItem:MutableLiveData<List<ItemPassword>> = MutableLiveData()
-    val dataItem:LiveData<List<ItemPassword>>
+    private val _dataItem: MutableLiveData<List<ItemPassword>> = MutableLiveData()
+    val dataItem: LiveData<List<ItemPassword>>
         get() = _dataItem
 
-    fun getAll(master:String) {
+    fun getAll(idMaster: Int) {
         viewModelScope.launch {
             try {
-                _dataItem.value = repository.getAllItemPasswords(master)
+                _dataItem.value = repository.getAllItemPasswords(idMaster)
             } catch (e: Exception) {
                 e.printStackTrace()
             }
@@ -51,7 +51,7 @@ class MainViewModel @Inject constructor(
 
     fun changeVisiblePassword(itemPassword: ItemPassword) {
         _dataItem.value = _dataItem.value?.map {
-            it.copy(isOpenPassword = if(it.id==itemPassword.id) !it.isOpenPassword else it.isOpenPassword)
+            it.copy(isOpenPassword = if (it.id == itemPassword.id) !it.isOpenPassword else it.isOpenPassword)
         }
     }
 

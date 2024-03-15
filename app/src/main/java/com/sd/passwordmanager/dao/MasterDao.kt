@@ -14,5 +14,5 @@ interface MasterDao {
 
     //дать мастер-пароль по паролю
     @Query("SELECT * FROM MasterEntity WHERE password = :password")
-    suspend fun getMasterPassword(password:String): MasterEntity?
+    suspend fun getMasterPassword(password: String): MasterEntity?
 }

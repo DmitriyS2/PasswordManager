@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:gravity="center"
-        android:text="Выбирайте сайт"
+        android:text="@string/choose_site"
         android:textColor="@color/white"
         android:textSize="22sp"
         app:layout_constraintEnd_toStartOf="@id/menu"
@@ -24,9 +24,10 @@
         android:id="@+id/menu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
         android:layout_marginTop="10dp"
+        android:layout_marginEnd="8dp"
         android:background="@android:color/transparent"
+        android:contentDescription="@string/image"
         android:src="@drawable/menu_24"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -48,6 +49,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="48dp"
         android:backgroundTint="@color/orange"
+        android:contentDescription="@string/additem"
         android:src="@drawable/circle_plus_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -80,7 +82,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Войти"
+                android:text="@string/signin"
                 android:textSize="20sp"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -89,16 +91,17 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                app:passwordToggleEnabled="true"
+                app:errorEnabled="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/text_signIn">
+                app:layout_constraintTop_toBottomOf="@id/text_signIn"
+                app:passwordToggleEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/password_signin"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Введите пароль"
+                    android:hint="@string/enter_password"
                     android:inputType="textPassword"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -110,7 +113,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="24dp"
-                android:text="   Ok   "
+                android:text="@string/ok"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/textInputLayout_password_signin" />
@@ -120,7 +123,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
-                android:text="Отмена"
+                android:text="@string/cancel"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@id/button_ok_signin" />
@@ -151,7 +154,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Регистрация"
+                android:text="@string/signup"
                 android:textSize="20sp"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -160,16 +163,17 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                app:passwordToggleEnabled="true"
+                app:errorEnabled="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/text_signUp">
+                app:layout_constraintTop_toBottomOf="@id/text_signUp"
+                app:passwordToggleEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/password_signup"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Введите пароль"
+                    android:hint="@string/enter_password"
                     android:inputType="textPassword"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -180,16 +184,17 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                app:passwordToggleEnabled="true"
+                app:errorEnabled="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/textInputLayout_password_signup">
+                app:layout_constraintTop_toBottomOf="@id/textInputLayout_password_signup"
+                app:passwordToggleEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/confirm_password_signup"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Подтвердите пароль"
+                    android:hint="@string/confirm_password"
                     android:inputType="textPassword"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -201,7 +206,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="24dp"
-                android:text="   Ok   "
+                android:text="@string/ok"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/textInputLayout_confirm_password_signup" />
@@ -211,7 +216,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
-                android:text="Отмена"
+                android:text="@string/cancel"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@id/button_ok_signup" />

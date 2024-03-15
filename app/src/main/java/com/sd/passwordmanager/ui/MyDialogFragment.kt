@@ -3,7 +3,6 @@ package com.sd.passwordmanager.ui
 import android.app.AlertDialog
 import android.app.Dialog
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
 import com.sd.passwordmanager.R
@@ -22,7 +21,6 @@ class SignInOutDialogFragment(
 ) : DialogFragment() {
 
     private val authViewModel: AuthViewModel by activityViewModels()
-    private val viewModel: MainViewModel by activityViewModels()
 
     @Inject
     lateinit var auth: AppAuth

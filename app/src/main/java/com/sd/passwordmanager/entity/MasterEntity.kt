@@ -5,15 +5,16 @@ import androidx.room.PrimaryKey
 import com.sd.passwordmanager.dto.MasterPassword
 
 @Entity
-class MasterEntity (
+class MasterEntity(
     @PrimaryKey(autoGenerate = true)
-    val id:Int,
-    val password:String
+    val id: Int,
+    val password: String,
+    val secretKeyItem: String
 ) {
-    fun toDto() = MasterPassword(id, password)
+    fun toDto() = MasterPassword(id, password, secretKeyItem)
 
     companion object {
         fun fromDto(dto: MasterPassword) =
-            MasterEntity(dto.id, dto.password)
+            MasterEntity(dto.id, dto.password, dto.secretKeyItem)
     }
 }

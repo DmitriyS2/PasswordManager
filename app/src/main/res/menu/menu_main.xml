@@ -5,17 +5,17 @@
     <group android:id="@+id/unauthenticated">
         <item
             android:id="@+id/signin"
-            android:title="Войти"
+            android:title="@string/signin"
             app:showAsAction="never" />
         <item
             android:id="@+id/signup"
-            android:title="Зарегистрироваться"
+            android:title="@string/signup"
             app:showAsAction="never" />
     </group>
     <group android:id="@+id/authenticated">
         <item
             android:id="@+id/signout"
-            android:title="Выйти"
+            android:title="@string/signout"
             app:showAsAction="never" />
     </group>
 </menu>

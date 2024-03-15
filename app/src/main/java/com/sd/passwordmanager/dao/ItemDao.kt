@@ -5,7 +5,6 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.sd.passwordmanager.entity.ItemEntity
-import com.sd.passwordmanager.entity.MasterEntity
 
 @Dao
 interface ItemDao {
@@ -17,7 +16,7 @@ interface ItemDao {
     @Query("DELETE FROM ItemEntity WHERE id = :id")
     suspend fun deleteItemPasswordById(id: Int)
 
-    //дать все ItemPassword'ы по мастер-паролю
-    @Query("SELECT * FROM ItemEntity WHERE master = :master")
-    suspend fun getAllItemPasswords(master: String): List<ItemEntity>?
+    //дать все ItemPassword'ы по id мастер-пароля
+    @Query("SELECT * FROM ItemEntity WHERE idMaster = :idMaster")
+    suspend fun getAllItemPasswords(idMaster: Int): List<ItemEntity>?
 }

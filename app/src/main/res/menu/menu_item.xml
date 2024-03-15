@@ -4,22 +4,22 @@
 
     <item
         android:id="@+id/edit"
-        android:title="Редактировать"
+        android:title="@string/edit"
         app:showAsAction="never" />
     <item
         android:id="@+id/remove"
-        android:title="Удалить"
+        android:title="@string/remove"
         app:showAsAction="never" />
     <group android:id="@+id/hidden_password">
         <item
             android:id="@+id/show_password"
-            android:title="Показать пароль"
+            android:title="@string/show_password"
             app:showAsAction="never" />
     </group>
     <group android:id="@+id/open_password">
         <item
             android:id="@+id/hide_password"
-            android:title="Скрыть пароль"
+            android:title="@string/hide_password"
             app:showAsAction="never" />
     </group>
 </menu>

@@ -9,7 +9,7 @@ import com.sd.passwordmanager.entity.MasterEntity
 
 @Database(
     entities = [ItemEntity::class, MasterEntity::class],
-    version = 1,
+    version = 2,
     exportSchema = false
 )
 abstract class AppDb : RoomDatabase() {

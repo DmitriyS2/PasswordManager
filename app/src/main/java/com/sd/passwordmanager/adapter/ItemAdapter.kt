@@ -1,9 +1,11 @@
 package com.sd.passwordmanager.adapter
 
+import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupMenu
+import androidx.annotation.RequiresApi
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -13,6 +15,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.sd.passwordmanager.R
 import com.sd.passwordmanager.databinding.ItemForRwBinding
 import com.sd.passwordmanager.dto.ItemPassword
+import com.sd.passwordmanager.util.ProtectData
 
 interface Listener {
     fun removeItem(item: ItemPassword)
@@ -29,11 +32,12 @@ class ItemAdapter(private val listener: Listener) :
 
         private val binding = ItemForRwBinding.bind(item)
 
+        @RequiresApi(Build.VERSION_CODES.O)
         fun bind(item: ItemPassword) = with(binding) {
 
             title.text = item.title
             site.text = item.url
-            password.text = item.password
+            password.text = ProtectData.decrypt(item.password, item.secretKey)
             password.isVisible = item.isOpenPassword
 
             Glide.with(avatar)
@@ -85,6 +89,7 @@ class ItemAdapter(private val listener: Listener) :
         return ItemHolder(view, listener)
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: ItemHolder, position: Int) {
         val item = getItem(position)
         holder.bind(item)

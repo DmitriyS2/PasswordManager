@@ -1,18 +1,16 @@
 package com.sd.passwordmanager.ui
 
+import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupMenu
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sd.passwordmanager.R
@@ -23,8 +21,6 @@ import com.sd.passwordmanager.dto.ItemPassword
 import com.sd.passwordmanager.ui.CurrentFragment.Companion.textArg
 import com.sd.passwordmanager.viewmodel.AuthViewModel
 import com.sd.passwordmanager.viewmodel.MainViewModel
-import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.launch
 
 class MainFragment : Fragment() {
 
@@ -32,6 +28,7 @@ class MainFragment : Fragment() {
     private val authViewModel: AuthViewModel by activityViewModels()
     private var fragmentBinding: FragmentMainBinding? = null
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -69,19 +66,6 @@ class MainFragment : Fragment() {
             adapter.submitList(it)
         }
 
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                authViewModel.data.collectLatest {
-                    if (it.id == 0) {
-//                        orderViewModel.cancelOrder(viewModel.dataLanguage)
-//                        topTextViewModel.text.value = viewModel.dataLanguage.basketGroup
-//                        viewModel.pointBottomMenu.value = 1
-//                        findNavController().navigate(R.id.fragmentForBasket)
-                    }
-                }
-            }
-        }
-
         binding.menu.setOnClickListener {
             it.animTouch()
             PopupMenu(it.context, it).apply {
@@ -113,7 +97,6 @@ class MainFragment : Fragment() {
 
         //UI в зависимости от аутентификации
         authViewModel.showUIfromAuth.observe(viewLifecycleOwner) {
-            Log.d("MyLog", "showAuth=$it")
             when (it) {
                 //в системе
                 0 -> {
@@ -143,12 +126,10 @@ class MainFragment : Fragment() {
                 }
                 //не в системе
                 4 -> {
-                    viewModel.getAll("0")
+                    viewModel.getAll(-1)
                     binding.groupMain.isVisible = false
                     binding.cardViewSignup.isVisible = false
                     binding.cardViewSignIn.isVisible = false
-
-                    Log.d("MyLog", "viewModel.data=${viewModel.dataItem.value}")
                 }
             }
         }
@@ -193,23 +174,23 @@ class MainFragment : Fragment() {
             when (it) {
                 // SignIn/SignUp Ok
                 1 -> {
-                    viewModel.getAll(authViewModel.data.value.password)
+                    viewModel.getAll(authViewModel.data.value.id)
                     authViewModel.changeShowUIfromAuth(0)
                     authViewModel.changeStateAuth(0)
                 }
                 // в БД нет такого user'а - значит неверный мастер-пароль
                 -1 -> {
-                    showToast("Неверный пароль")
+                    showToast(getString(R.string.wrong_password))
                     authViewModel.changeStateAuth(0)
                 }
                 //новый user не записался в БД
                 -2 -> {
-                    showToast("Ошибка записи.Повторите попытку")
+                    showToast(getString(R.string.wrong_error))
                     authViewModel.changeStateAuth(0)
                 }
                 //такой user уже существует (для SignUp)
                 -3 -> {
-                    showToast("Такой аккаунт уже существует")
+                    showToast(getString(R.string.accaunt_already_exists))
                     authViewModel.changeStateAuth(0)
                 }
             }
@@ -233,9 +214,9 @@ class MainFragment : Fragment() {
 
     private fun areYouSureSignOut() {
         val menuDialog = SignInOutDialogFragment(
-            title = "Вы уверены, что хотите выйти?",
-            textPosButton = "Да",
-            textNegButton = "Нет",
+            title = getString(R.string.are_you_sure_you_want_to_logout),
+            textPosButton = getString(R.string.yes),
+            textNegButton = getString(R.string.no),
             flagSignOut = true,
         )
         val manager = childFragmentManager
@@ -244,9 +225,9 @@ class MainFragment : Fragment() {
 
     private fun signInOrSignUp() {
         val menuDialog = SignInOutDialogFragment(
-            title = "Вы не вошли в аккаунт",
-            textPosButton = "Войти",
-            textNegButton = "Зарегистрироваться",
+            title = getString(R.string.you_arent_logged_into_your_accaunt),
+            textPosButton = getString(R.string.signin),
+            textNegButton = getString(R.string.signup),
             flagSignOut = false,
         )
         val manager = childFragmentManager
@@ -258,7 +239,7 @@ class MainFragment : Fragment() {
 
         fragmentBinding?.apply {
             if (passwordSignin.text.isNullOrEmpty()) {
-                passwordSignin.error = "Поле не может быть пустым"
+                passwordSignin.error = getString(R.string.field_mustnt_empty)
                 flag = false
             }
         }
@@ -270,16 +251,16 @@ class MainFragment : Fragment() {
 
         fragmentBinding?.apply {
             if (passwordSignup.text.isNullOrEmpty()) {
-                passwordSignup.error = "Поле не может быть пустым"
+                passwordSignup.error = getString(R.string.field_mustnt_empty)
                 flag = false
             }
             if (confirmPasswordSignup.text.isNullOrEmpty()) {
-                confirmPasswordSignup.error = "Поле не может быть пустым"
+                confirmPasswordSignup.error = getString(R.string.field_mustnt_empty)
                 flag = false
             }
             if (passwordSignup.text.toString() != confirmPasswordSignup.text.toString()) {
-                passwordSignup.error = "Пароль не совпадает"
-                confirmPasswordSignup.error = "Пароль не совпадает"
+                passwordSignup.error = getString(R.string.password_doesnt_confirm)
+                confirmPasswordSignup.error = getString(R.string.password_doesnt_confirm)
                 flag = false
             }
         }
